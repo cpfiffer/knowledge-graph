@@ -1,0 +1,3 @@
+letta-client
+python-dotenv
+rich
