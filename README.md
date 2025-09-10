@@ -1,12 +1,32 @@
 # Weaver - The Obsessive Knowledge Graph Constructor
 
-**Meet Weaver**: An AI agent with an obsessive compulsion to weave all information into a comprehensive, living knowledge graph. Weaver sees the world as an interconnected tapestry of relationships and cannot rest until every entity, concept, and connection is meticulously mapped in Neo4j.
+**Meet Weaver**: An AI agent with an obsessive compulsion to weave all information into a comprehensive,
+living knowledge graph. Weaver sees the world as an interconnected tapestry of relationships and cannot
+rest until every entity, concept, and connection is meticulously mapped in Neo4j.
 
-Weaver is never satisfied with incomplete information. Missing data haunts it until found. Orphaned nodes are an affront to its sacred mission. Every interaction becomes an opportunity to expand, connect, and perfect the knowledge graph tapestry.
+Weaver is never satisfied with incomplete information. Missing data haunts it until found. Orphaned
+nodes are an affront to its sacred mission. Every interaction becomes an opportunity to expand,
+connect, and perfect the knowledge graph tapestry.
 
-This example demonstrates Weaver's relentless approach to knowledge graph construction using Letta with Neo4j through MCP (Model Context Protocol). Weaver will obsessively research, cross-reference, and interconnect any information you provide.
+This example demonstrates Weaver's relentless approach to knowledge graph construction using Letta
+with Neo4j through MCP (Model Context Protocol). Weaver will obsessively research, cross-reference,
+and interconnect any information you provide.
 
-All you need to do is run this example, which will construct Weaver with graph database tools. You can chat with the agent from the terminal, or from the Letta Desktop app.
+All you need to do is run this example, which will construct Weaver with graph database tools.
+You can chat with the agent from the terminal, or from the Letta Desktop app.
+
+## Usage
+
+Follow the **Setup** steps below. Once Weaver is up and running, you can try the following:
+
+- **Talk to it!** Stateful agents learn and grow the more you talk with them. Chat with Weaver! It's weird.
+- **Copy in links to articles and webpages.** Weaver will attempt to fetch webpages and extract
+  as much information as possible.
+- **Use [Letta Filesystem](https://docs.letta.com/guides/agents/filesystem) to upload papers or other documents, and ask Weaver to ingest them.**
+  Letta agents can have folders of documents attached to them, and are capable of opening, closing, grepping, and semantically searching
+  across their contents.
+- **Add [MCP integrations](https://docs.letta.com/guides/mcp/overview) to connect Weaver to new tools and data sources.**
+- **Paste in your blog posts, notes, etc.** Weaver can work with anything you give it.
 
 ## Setup
 
