@@ -131,7 +131,6 @@ Your tools include Neo4j operations, web search, and webpage fetching. Use them 
             "conversation_search",
             "execute_query",
             "fetch_webpage",
-            "web_search",
         ],
         tool_rules=[], # Disable default tool rules
     )
