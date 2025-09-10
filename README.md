@@ -15,6 +15,9 @@ and interconnect any information you provide.
 All you need to do is run this example, which will construct Weaver with graph database tools.
 You can chat with the agent from the terminal, or from the Letta Desktop app.
 
+I presented this during the [Graph Exchange](https://lu.ma/mrewo0no?tk=Dmdr6x) in San Francisco. The talk was recorded, but not 
+yet available. 
+
 ## Usage
 
 Follow the **Setup** steps below. Once Weaver is up and running, you can try the following:
