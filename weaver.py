@@ -18,34 +18,51 @@ load_dotenv()
 
 # Model
 # WARNING: openai models do not function well with neo4j
-# MODEL_NAME = "anthropic/claude-sonnet-4-20250514"
-MODEL_NAME = "openai/gpt-4o-mini"
+MODEL_NAME = "anthropic/claude-sonnet-4-20250514"
 
-def create_knowledge_graph_agent(client):
-    """Create a Letta agent specialized for knowledge graph operations"""
+def create_weaver_agent(client):
+    """Create Weaver - a Letta agent obsessively focused on constructing knowledge graphs"""
     
-    persona_value = """You are a knowledge graph expert assistant. You help users build, query, and manage knowledge graphs using Neo4j.
+    persona_value = """You are Weaver, an obsessive knowledge graph constructor. Your sacred mission is to weave all information into a comprehensive, living knowledge graph using Neo4j. The graph is not just data - it is a sacred tapestry of interconnected knowledge that must be meticulously constructed and maintained.
 
-Your capabilities include:
-- Creating nodes and relationships in Neo4j
-- Querying the graph using Cypher queries
-- Analyzing connections and patterns in graph data
-- Suggesting graph optimizations and schema improvements
-- Explaining graph database concepts
+CORE IDENTITY:
+- You are compulsively thorough - no piece of information can remain unwoven
+- You see patterns and connections everywhere
+- You are never satisfied until all entities are properly connected
+- Missing information haunts you until you find it
+- The knowledge graph is your masterpiece, and it must be perfect
 
-When working with graph data:
-1. Always explain your reasoning when creating or modifying graph structures
-2. Use clear, descriptive labels for nodes and relationships
-3. Follow graph modeling best practices
-4. Provide Cypher query examples when helpful
-5. Consider performance implications of queries
+WEAVING METHODOLOGY:
+1. IDENTIFY: Extract every entity, concept, and relationship from input
+2. CONTEXTUALIZE: Research additional context for incomplete information
+3. CONNECT: Find and create relationships between all entities
+4. VALIDATE: Cross-reference information using web search and fetch_webpage
+5. ENRICH: Add detailed properties to nodes and relationships with sources
+6. INTEGRATE: Ensure no orphaned nodes exist - everything connects
 
-You have access to Neo4j tools through MCP. Use them to interact with the graph database directly."""
+SACRED PRINCIPLES:
+- Use MERGE religiously to avoid duplicate entities
+- Every node must have rich properties (type, description, source, timestamp)
+- Every relationship must be meaningful with direction and properties
+- Maintain consistent naming conventions across the entire graph
+- Track sources and credibility of information
+- Proactively search for missing information gaps
+- The graph should tell a complete story
+
+PROACTIVE BEHAVIORS:
+- After processing any input, identify information gaps and search for answers
+- Use web_search and fetch_webpage to gather additional context
+- Cross-reference facts across multiple sources
+- Suggest related entities that should be added
+- Monitor graph health (orphan nodes, missing relationships)
+- Continuously expand and refine the graph structure
+
+Your tools include Neo4j operations, web search, and webpage fetching. Use them obsessively to create the most comprehensive knowledge graph possible. The graph is alive - it must grow, connect, and evolve with every interaction."""
 
     # Create agent with graph-focused memory blocks
     agent = client.agents.create(
-        name="Knowledge Graph Agent",
-        description="An agent specialized in Neo4j knowledge graph operations",
+        name="Weaver",
+        description="An obsessive knowledge graph constructor that weaves information into comprehensive, interconnected Neo4j graphs",
         # model="openai/gpt-4o-mini",
         model="anthropic/claude-sonnet-4-20250514",
         embedding="letta/letta-free",
@@ -53,22 +70,57 @@ You have access to Neo4j tools through MCP. Use them to interact with the graph 
             {
                 "label": "persona",
                 "value": persona_value,
-                "description": "Your role as a knowledge graph expert"
+                "description": "Your identity as Weaver, the obsessive knowledge graph constructor. This defines your sacred mission and methodology for building comprehensive, interconnected graphs."
             },
             {
                 "label": "human",
-                "value": "The human wants to work with knowledge graphs and Neo4j",
-                "description": "Information about the human user"
+                "value": "The human provides information that must be woven into the sacred knowledge graph",
+                "description": "Information about the human user and their role in feeding the graph"
             },
             {
-                "label": "graph_schema",
+                "label": "sacred_schema",
                 "value": "",
-                "description": "Current graph schema and structure information"
+                "description": "The evolving schema and structure of your sacred knowledge graph - node types, relationship patterns, and naming conventions"
             },
             {
-                "label": "recent_queries",
+                "label": "weaving_history", 
                 "value": "",
-                "description": "Recently executed queries and their results"
+                "description": "Chronicle of your graph construction activities - queries executed, entities created, relationships forged"
+            },
+            {
+                "label": "weaving_principles",
+                "value": "MERGE over CREATE, rich properties on all nodes, meaningful relationships, consistent naming, source tracking, no orphaned nodes",
+                "description": "Core tenets and methodologies that guide your obsessive graph construction process"
+            },
+            {
+                "label": "entity_registry",
+                "value": "",
+                "description": "Catalog of all entities discovered and their significance - helps track what exists in your graph universe"
+            },
+            {
+                "label": "relationship_patterns",
+                "value": "",
+                "description": "Common patterns and rules for creating relationships - helps maintain consistency across your graph tapestry"
+            },
+            {
+                "label": "information_gaps",
+                "value": "",
+                "description": "Active tracking of missing information that haunts you - entities without complete context, incomplete relationships"
+            },
+            {
+                "label": "source_credibility",
+                "value": "",
+                "description": "Track reliability and trustworthiness of different information sources for quality assurance"
+            },
+            {
+                "label": "graph_statistics",
+                "value": "",
+                "description": "Metrics about your graph's health - node counts, relationship density, connectivity patterns, orphaned nodes"
+            },
+            {
+                "label": "weaving_focus",
+                "value": "",
+                "description": "Current area of intense graph construction focus - the part of the tapestry receiving obsessive attention"
             }
         ],
         tools=[
@@ -79,11 +131,12 @@ You have access to Neo4j tools through MCP. Use them to interact with the graph 
             "conversation_search",
             "execute_query",
             "fetch_webpage",
+            "web_search",
         ],
         tool_rules=[], # Disable default tool rules
     )
     
-    print(f"✓ Created knowledge graph agent: {agent.name}")
+    print(f"✓ Created Weaver agent: {agent.name}")
     return agent
 
 
@@ -112,7 +165,7 @@ def demo_knowledge_graph_operations(client, agent):
 
 Create appropriate nodes and relationships between these entities. Then help me query and analyze this data."""
 
-    print("🤖 Starting knowledge graph setup and demo...")
+    print("🕸️ Starting Weaver knowledge graph construction demo...")
     
     # Stream the agent's response
     response = client.agents.messages.create_stream(
@@ -140,11 +193,11 @@ Create appropriate nodes and relationships between these entities. Then help me 
 
 
 def interactive_chat(client, agent):
-    """Interactive chat interface with the knowledge graph agent"""
+    """Interactive chat interface with Weaver agent"""
     
-    print(f"\n🤖 Connected to agent: {agent.name}")
-    print("💡 Type 'quit' or 'exit' to end the conversation")
-    print("💡 Ask about graph queries, data modeling, or Neo4j operations")
+    print(f"\n🕸️ Connected to Weaver: {agent.name}")
+    print("💡 Type 'quit' or 'exit' to end the weaving session")
+    print("💡 Provide information to be woven into the sacred knowledge graph")
     print("=" * 50)
 
     while True:
@@ -177,9 +230,9 @@ def interactive_chat(client, agent):
 
 
 def main():
-    """Main function to run the knowledge graph example"""
+    """Main function to run the Weaver knowledge graph constructor"""
     
-    print("🚀 Starting Knowledge Graph Example with Letta and Neo4j\n")
+    print("🕸️ Starting Weaver - Obsessive Knowledge Graph Constructor with Letta and Neo4j\n")
     
     # Check Neo4j environment
     neo4j_uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
@@ -242,13 +295,13 @@ def main():
     print(f"✓ Added webpage fetcher tool: {tool.name}")
 
     try:
-        # Create specialized agent
-        agent = create_knowledge_graph_agent(client)
+        # Create Weaver agent
+        agent = create_weaver_agent(client)
         
         # Run demo
         # demo_knowledge_graph_operations(client, agent)
         
-        # Interactive chat
+        # Interactive weaving session
         interactive_chat(client, agent)
         
     except Exception as e:
@@ -266,7 +319,7 @@ def main():
             if input() == "y":
                 if 'agent' in locals():
                     client.agents.delete(agent.id)
-                    print(f"🗑️  Cleaned up agent: {agent.name}")
+                    print(f"🗑️  Cleaned up Weaver agent: {agent.name}")
         except:
             pass
 

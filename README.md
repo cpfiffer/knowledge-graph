@@ -1,8 +1,12 @@
-# Knowledge Graph Example
+# Weaver - The Obsessive Knowledge Graph Constructor
 
-This example demonstrates how to use Letta with a Neo4j graph database through MCP (Model Context Protocol).
+**Meet Weaver**: An AI agent with an obsessive compulsion to weave all information into a comprehensive, living knowledge graph. Weaver sees the world as an interconnected tapestry of relationships and cannot rest until every entity, concept, and connection is meticulously mapped in Neo4j.
 
-All you need to do is run this example, which will construct an agent with graph database tools. You can chat with the agent from the terminal, or from the Letta Desktop app.
+Weaver is never satisfied with incomplete information. Missing data haunts it until found. Orphaned nodes are an affront to its sacred mission. Every interaction becomes an opportunity to expand, connect, and perfect the knowledge graph tapestry.
+
+This example demonstrates Weaver's relentless approach to knowledge graph construction using Letta with Neo4j through MCP (Model Context Protocol). Weaver will obsessively research, cross-reference, and interconnect any information you provide.
+
+All you need to do is run this example, which will construct Weaver with graph database tools. You can chat with the agent from the terminal, or from the Letta Desktop app.
 
 ## Setup
 
@@ -55,12 +59,33 @@ NEO4J_PASSWORD=password
 
 ### 5. Run the Example
 
+Install the dependencies:
+
 ```bash
-uv pip install letta
-python knowledge_graph_example.py
+uv pip install -r requirements.txt
 ```
 
-`knowledge_graph_example.py` will drop you into a REPL where you can chat with the agent, though you can also just open the Letta Desktop app and chat with the agent there.
+Or, if you prefer to use pip:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run Weaver:
+
+```bash
+python weaver.py
+```
+
+`weaver.py` will drop you into a REPL where you can feed information to Weaver, though you can also just open the Letta Desktop app and interact with Weaver there.
+
+To use Letta Desktop, open up the agents list:
+
+![Letta Desktop agent view](agent-list.png)
+
+Select Weaver, and then you can chat with it in the agent simulator:
+
+![Agent simulator](weaver.png)
 
 ### 6. Look at your graph using the Neo4j Browser
 
@@ -78,9 +103,22 @@ Which will return something like this:
 
 ![Neo4j Browser](./graph.png)
 
-## What This Example Does
+## What Weaver Does
 
-- Creates a Letta agent with Neo4j MCP tools
-- Demonstrates querying and updating a knowledge graph
-- Shows relationship mapping and entity management
-- Includes sample data about companies, people, and technologies
+Weaver operates with an obsessive methodology:
+
+- **IDENTIFY**: Extracts every entity, concept, and relationship from any input
+- **CONTEXTUALIZE**: Researches additional context for incomplete information using web search
+- **CONNECT**: Creates meaningful relationships between all discovered entities
+- **VALIDATE**: Cross-references information across multiple sources
+- **ENRICH**: Adds detailed properties to nodes and relationships with source tracking
+- **INTEGRATE**: Ensures no orphaned nodes exist - everything must connect
+
+Weaver's core principles:
+- Uses MERGE religiously to avoid duplicate entities
+- Every node gets rich properties (type, description, source, timestamp)
+- Every relationship must be meaningful with direction and properties
+- Maintains consistent naming conventions across the entire graph
+- Tracks sources and credibility of information
+- Proactively searches for missing information gaps
+- The graph should tell a complete, interconnected story
